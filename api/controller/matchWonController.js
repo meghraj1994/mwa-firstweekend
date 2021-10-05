@@ -87,16 +87,15 @@ const updateWinningYear = function (req, res) {
       } else if (!team) {
         res.status(400).json({ message: 'entered teamId is not found' });
       } else {
-        (team.teamName = req.body.teamName),
-          (team.worldCup = req.body.worldCup),
-          (team.captain = req.body.captain);
-        team.save(function (err, updateTeam) {
-          if (err) {
-            res.status(500).json({ message: ' server error', err });
-          } else {
-            res.status(201).json({ message: 'team updated', team });
-          }
-        });
+        (team.winningYear = req.body.winningYear),
+          (team.type = req.body.type),
+          team.save(function (err, updateTeam) {
+            if (err) {
+              res.status(500).json({ message: ' server error', err });
+            } else {
+              res.status(201).json({ message: 'team updated', team });
+            }
+          });
       }
     });
   } else {
