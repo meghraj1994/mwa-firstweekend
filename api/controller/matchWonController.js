@@ -152,4 +152,5 @@ module.exports = {
   getAllWiningYear: getAllWiningYear,
   addwinningYear: addwinningYear,
   deleteWinningYear: deleteWinningYear,
+  updateWinningYear: updateWinningYear,
 };
