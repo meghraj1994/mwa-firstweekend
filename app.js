@@ -1,10 +1,16 @@
+require('dotenv').config({ path: '.env' });
 const express = require('express');
-const dotenv = require('dotenv');
-require('./api/data/cricket-mode');
+require('./api/data/cricket-model');
 const path = require('path');
 require('./api/data/db');
 const routes = require('./api/router/cricket-router');
 const app = express();
+
+if (isNaN(process.env.PORT)) {
+  process.env.PORT = 6000;
+}
+PORT = process.env.PORT || 6000;
+app.set('port', PORT);
 
 // //static middleware
 // app.use(express.static(path.join(__dirname, 'public')));
@@ -13,15 +19,10 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ extended: false }));
 
-//loading config file
-dotenv.config({ path: './config/config.env' });
-
 //loading router middleware
 app.use('/api', routes);
 
 //server starts here
-const PORT = process.env.PORT;
-console.log(PORT);
-app.listen(PORT, function () {
-  console.log(`server is running on port ${process.env.PORT}`);
+const server = app.listen(app.get('port'), function () {
+  console.log('server is running on port', server.address().port);
 });

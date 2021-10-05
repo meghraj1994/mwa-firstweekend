@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cricketController = require('../controller/cricketController');
+const winningYearController = require('../controller/matchWonController');
 
 router
   .route('/teams')
@@ -11,5 +12,9 @@ router
   .get(cricketController.oneTeam)
   .put(cricketController.updateTeam)
   .delete(cricketController.deleteTeam);
+router
+  .route('/teams/:teamId/winningYear')
+  .get(winningYearController.getAllWiningYear)
+  // .post(winningYearController.addwinningYear);
 
 module.exports = router;

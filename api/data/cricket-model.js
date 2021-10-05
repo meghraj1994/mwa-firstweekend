@@ -1,4 +1,9 @@
 const mongoose = require('mongoose');
+
+const winningStatusSchema = new mongoose.Schema({
+  winningYear: [Number],
+  matchType: String,
+});
 const gameSchema = new mongoose.Schema({
   teamName: {
     type: String,
@@ -7,6 +12,7 @@ const gameSchema = new mongoose.Schema({
   },
   worldCup: String,
   captain: String,
+  matchWon: winningStatusSchema,
 });
 
 //this is add gameSchema to mongoose, we can access this scema anywhere using mangoose.model("Game")

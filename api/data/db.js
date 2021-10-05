@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 //meanGameDB is our db name
-const dbURL = 'mongodb://localhost:27017/cricketDB';
+const dbURL = process.env.DATABASE_URL + process.env.DATABASE_NAME;
 mongoose.connect(dbURL);
 mongoose.connection.on('connected', function () {
   console.log('mongoose is connected to ' + dbURL);
