@@ -15,6 +15,8 @@ router
 router
   .route('/teams/:teamId/winningYear')
   .get(winningYearController.getAllWiningYear)
-  // .post(winningYearController.addwinningYear);
+  .post(winningYearController.addwinningYear);
+
+router.route('/teams/:teamId/winningYear/:winningYearId').delete(winningYearController.deleteWinningYear)
 
 module.exports = router;
