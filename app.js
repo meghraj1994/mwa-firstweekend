@@ -12,12 +12,15 @@ if (isNaN(process.env.PORT)) {
 PORT = process.env.PORT || 6000;
 app.set('port', PORT);
 
-// //static middleware
-// app.use(express.static(path.join(__dirname, 'public')));
-
 //these two middleware withouth callback function is used for user request from "body"
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json({ extended: false }));
+
+//angular middleware
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+
+// //static middleware
+app.use(express.static(path.join(__dirname, 'public')));
 
 //loading router middleware
 app.use('/api', routes);

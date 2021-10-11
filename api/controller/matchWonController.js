@@ -23,8 +23,9 @@ const getAllWiningYear = function (req, res) {
               res.status(500).json({ message: 'error finding winningYear' });
               return;
             } else {
-              console.log(result._doc.winningYear);
-              res.status(200).json(result._doc.winningYear);
+              // console.log(result._doc.winningYear);
+              // res.status(200).json(result._doc.winningYear);
+              res.status(200).json(result.winningYear);
               return;
             }
           });
@@ -106,7 +107,7 @@ const updateWinningYear = function (req, res) {
   }
 };
 
-// //deleting winingYear
+//deleting winingYear
 const deleteWinningYear = function (req, res) {
   var teamId = req.params.teamId;
   if (mongoose.isValidObjectId(req.params.teamId)) {

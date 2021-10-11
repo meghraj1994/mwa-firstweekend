@@ -14,12 +14,12 @@ router
   .delete(cricketController.deleteTeam);
 router
   .route('/teams/:teamId/winningYear')
-  .get(winningYearController.getAllWiningYear)
-  .post(winningYearController.addwinningYear);
+  .get(winningYearController.getAllWiningYear);
+// .post(winningYearController.addwinningYear);
 
-router
-  .route('/teams/:teamId/winningYear/:winningYearId')
-  .delete(winningYearController.deleteWinningYear)
-  .put(winningYearController.updateWinningYear);
+// router
+//   .route('/teams/:teamId/winningYear/:winningYearId')
+//   .delete(winningYearController.deleteWinningYear)
+//   .put(winningYearController.updateWinningYear);
 
 module.exports = router;
