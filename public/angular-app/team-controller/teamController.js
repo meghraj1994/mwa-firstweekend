@@ -1,13 +1,13 @@
-angular.module('jobs').controller('JobController', JobController);
+angular.module('teams').controller('TeamController', TeamController);
 
-function JobController(JobFactory, $routeParams) {
+function TeamController(TeamFactory, $routeParams) {
+  console.log('one team controller');
   const vm = this;
-  const jobId = $routeParams.jobId;
+  const teamId = $routeParams.teamId;
   vm.isSubmitted = false;
-  console.log(jobId);
-  JobFactory.getOneJob(jobId).then(function (response) {
-    vm.job = response;
+  console.log(teamId);
+  TeamFactory.getOne(teamId).then(function (response) {
+    vm.team = response;
+    console.log(vm.team);
   });
-
- 
 }

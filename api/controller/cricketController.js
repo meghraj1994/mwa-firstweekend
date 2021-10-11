@@ -5,8 +5,8 @@ const Teams = mongoose.model('Team');
 //geting all teams team
 const allTeams = function (req, res) {
   var offset = 0;
-  var count = 9;
-  var maxCount = 10;
+  var count = 15;
+  var maxCount = 20;
   if (req.query && req.query.offset) {
     offset = parseInt(req.query.offset, 10);
   }
@@ -63,6 +63,7 @@ const oneTeam = function (req, res) {
 
 //adding game
 const addTeam = function (req, res) {
+  console.log('add one team');
   Teams.create(
     {
       teamName: req.body.teamName,

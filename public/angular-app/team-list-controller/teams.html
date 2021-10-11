@@ -1,27 +1,27 @@
 <h3>{{vm.title}}</h3>
 <ul>
   <li ng-repeat="team in vm.teams">
-    <a ng-href="#!/teams/{{team._id}}">Team : {{team.teamName:}} </a>
-    &nbsp;&nbsp;Captain:{{team. captain}}
+    <a ng-href="#!/teams/{{team._id}}">Team : {{team.teamName}} </a>
+    &nbsp;&nbsp;Captain:{{team.captain}}
     <!-- &nbsp;&nbsp;date: {{job.postDate | date : format : timezone}} -->
-    <!-- <button class="design" ng-click="vm.delete(job._id)">delete</button> -->
+    <button class="design" ng-click="vm.delete(team._id)">delete</button>
   </li>
 </ul>
 
-<!-- <form name="vm.jobsForm" ng-submit="vm.addJob()">
+<form name="vm.teamsForm" ng-submit="vm.addTeam()">
   <h5><b>Fill Form:</b></h5> 
-  title : &nbsp;&nbsp;&nbsp; <input type="text" name="title" required
-  ng-model="vm.newTitle" style="color:black" /> </br>
-  salary : <input type="text" name="salary" ng-model="vm.newSalary" style="color: black"/>
+  Team : &nbsp;&nbsp;&nbsp; <input type="text" name="teamName" required
+  ng-model="vm.newTeamName" style="color:black" /> </br>
+  Captain : <input type="text" name="captain" ng-model="vm.newCaptain" style="color: black"/>
   <button type="submit" class="btn-success">Add Job</button>
-</form> -->
+</form>
 
-<!-- <style>
+<style>
   .design {
-    background-color: #4caf50;
+    background-color:red;
     color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
   }
-</style> -->
+</style>

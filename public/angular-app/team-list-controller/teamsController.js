@@ -7,8 +7,10 @@ function TeamsController(TeamFactory) {
   getAllTeams();
 
   function getAllTeams() {
-    JobFactory.allTeams().then(function (response) {
-      vm.jobs = response;
+    // console.log('get all teams');
+    TeamFactory.allTeams().then(function (response) {
+      vm.teams = response;
+      console.log(vm.jobs);
       // for (job of vm.jobs) {
       //   job.postDate = Date(job.postDate);
       // }
@@ -16,35 +18,35 @@ function TeamsController(TeamFactory) {
   }
 
   //adding new Game
-  // vm.addTeam = function () {
-  //   console.log('add team controller');
-  //   const newPost = {
-  //     title: vm.newTitle,
-  //     salary: vm.newSalary,
-  //   };
-  //   if (vm.jobsForm.$valid) {
-  //     JobFactory.addOne(newPost)
-  //       .then(function (response) {
-  //         console.log('Job is saved', response);
-  //       })
-  //       .catch(function (error) {
-  //         console.log(errr);
-  //       });
-  //   } else {
-  //     vm.isSubmitted = true;
-  //   }
-  //   getAllTeams();
-  // };
+  vm.addTeam = function () {
+    console.log('add team controller');
+    const newPost = {
+      team: vm.newTeamName,
+      captain: vm.newCaptain,
+    };
+    if (vm.teamsForm.$valid) {
+      TeamFactory.addOne(newPost)
+        .then(function (response) {
+          console.log('Team is saved', response);
+        })
+        .catch(function (error) {
+          console.log(errr);
+        });
+    } else {
+      vm.isSubmitted = true;
+    }
+    getAllTeams();
+  };
 
-  // vm.delete = function (id) {
-  //   console.log('delete method called');
-  //   JobFactory.deleteJob(id)
-  //     .then(function (response) {
-  //       console.log('game is deleted');
-  //     })
-  //     .catch(function () {
-  //       console.log(err);
-  //     });
-  //   getAllTeams();
-  // };
+  vm.delete = function (id) {
+    console.log('delete method called');
+    TeamFactory.deleteOne(id)
+      .then(function (response) {
+        console.log('team is deleted');
+      })
+      .catch(function () {
+        console.log(err);
+      });
+    getAllTeams();
+  };
 }
