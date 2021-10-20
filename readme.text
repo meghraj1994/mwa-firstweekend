@@ -1,0 +1,5 @@
+to run
+
+- first update  >> npm update
+-port used is >> 3000
+- to run >> nodemon
