@@ -2,6 +2,7 @@ angular.module('teams').controller('TeamsController', TeamsController);
 
 function TeamsController(TeamFactory) {
   const vm = this;
+  vm.id=0;
   vm.title = 'Welcome to Cricket Teams';
 
   getAllTeams();
@@ -20,11 +21,27 @@ function TeamsController(TeamFactory) {
   //adding new Game
   vm.addTeam = function () {
     console.log('add team controller');
+
+  
     const newPost = {
-      team: vm.newTeamName,
+      teamName: vm.newTeamName,
       captain: vm.newCaptain,
+      worldCup: vm.newWorldCup,
     };
-    if (vm.teamsForm.$valid) {
+      //checking if there is Id it will update team and if no if then add newOne team
+    if(vm.id){
+      TeamFactory.updateTeam(vm.id,newPost).then(function (response) {
+        console.log('Team is updated', response);
+        vm.id=null,
+        vm.newTeamName="",
+        vm.newCaptain=""
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      getAllTeams();
+    } else
+    if (vm.addForm.$valid) {
       TeamFactory.addOne(newPost)
         .then(function (response) {
           console.log('Team is saved', response);
@@ -32,9 +49,11 @@ function TeamsController(TeamFactory) {
         .catch(function (error) {
           console.log(errr);
         });
+      
     } else {
       vm.isSubmitted = true;
     }
+  
     getAllTeams();
   };
 
@@ -49,4 +68,10 @@ function TeamsController(TeamFactory) {
       });
     getAllTeams();
   };
+
+  vm.editTeam = function(team) {
+    vm.newTeamName = team.teamName;
+    vm.newCaptain = team.captain;
+    vm.id=team._id
+  }
 }

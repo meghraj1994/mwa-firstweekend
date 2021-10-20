@@ -5,7 +5,7 @@ const Teams = mongoose.model('Team');
 //geting all teams team
 const allTeams = function (req, res) {
   var offset = 0;
-  var count = 15;
+  var count = 3;
   var maxCount = 20;
   if (req.query && req.query.offset) {
     offset = parseInt(req.query.offset, 10);
@@ -67,13 +67,12 @@ const addTeam = function (req, res) {
   Teams.create(
     {
       teamName: req.body.teamName,
-      worldCup: req.body.worldCup,
       captain: req.body.captain,
     },
     function (err, team) {
       if (err) {
         console.log('Error creating team');
-        res.status(400).json(err);
+        res.status(400).json({ message: 'error adding team', err });
       } else {
         console.log('new team added', team);
         res.status(201).json(team);
@@ -93,7 +92,7 @@ const updateTeam = function (req, res) {
         res.status(400).json({ message: 'entered teamId is not found' });
       } else {
         (team.teamName = req.body.teamName),
-          (team.worldCup = req.body.worldCup),
+          // (team.worldCup = req.body.worldCup),
           (team.captain = req.body.captain);
         team.save(function (err, updateTeam) {
           if (err) {

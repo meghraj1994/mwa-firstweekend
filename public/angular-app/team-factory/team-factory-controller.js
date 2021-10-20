@@ -6,6 +6,7 @@ function TeamFactory($http) {
     getOne: getOne,
     addOne: addOne,
     deleteOne: deleteOne,
+    updateTeam:updateTeam
   };
 
   function allTeams() {
@@ -15,7 +16,7 @@ function TeamFactory($http) {
 
   function addOne(team) {
     console.log('add team Factory method', team);
-    return $http.post('/api/teams', team).then(complete).catch(failed);
+    return $http.post('/api/teams',team).then(complete).catch(failed);
   }
   function getOne(teamId) {
     // console.log('OneTeam method', teamId);
@@ -32,10 +33,15 @@ function TeamFactory($http) {
       .then(complete)
       .catch(failed);
   }
+  function updateTeam(id,team) {
+    console.log("Update Team");
+    return $http.put('/api/teams/'+id,team).then(complete).catch(failed);
+  }
 
   function complete(response) {
-    console.log('add one compete resposnse');
+    console.log('add one compete resposnse')
     return response.data;
+    
   }
   function failed(error) {
     return error.status.statusText;
